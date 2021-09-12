@@ -10,7 +10,7 @@ A-SOUL录播，打轴，压制，投稿方法
 
 #### [字幕打轴](./字幕打轴.md)
 
-Aegisub的使用
+Aegisub的使用，找歌词，选字体
 
 #### [ffmpeg](./ffmpeg.md)
 

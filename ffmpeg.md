@@ -421,6 +421,14 @@ ffmpeg -i input.flv -c:a copy -c:v libx264 -crf 17 -vf subtitles=input.ass -pres
 
 <img src="picture/Snipaste_2021-09-04_14-00-43.png" alt="Snipaste_2021-09-04_14-00-43" width="500"  />
 
+压制的时候看一下这里，字体是否对得上（不一定三个字体完全一样，如Source Han Sans CN与Source Han Sans CN Regular是同一种字体）
+
+<img src="picture/Snipaste_2021-09-09_21-32-30.png" alt="Snipaste_2021-09-09_21-32-30" width="800" />
+
+如果对不上，用记事本打开ass文件，ffmpeg会把名字无法识别，名字错误，没有的字体换成其他字体，比如思源黑体 CN是不能识别的，需要改名为Source Han Sans CN。
+
+<img src="picture/Snipaste_2021-09-12_16-36-10.png" alt="Snipaste_2021-09-12_16-36-10" width="800" />
+
 ##### pr插件
 
 [Ruminoid官网下载](https://vbox.moe/Ruminoid/)
