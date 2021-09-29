@@ -20,7 +20,7 @@ Aegisub的使用，找歌词，选字体
 
 #### [ffmpeg](./ffmpeg.md)
 
-ffprobe，ffmpeg的使用，cmd命令行技巧
+压制转码，ffprobe，ffmpeg的使用，cmd命令行技巧
 
 #### [b站投稿](./b站投稿.md)
 
