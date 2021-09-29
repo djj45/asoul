@@ -33,6 +33,9 @@
     - [pr插件](#pr插件)
   - [弹幕压制](#弹幕压制)
     - [截取录播与弹幕](#截取录播与弹幕)
+  - [硬件加速](#硬件加速)
+    - [N卡](#N卡)
+    - [A卡](#A卡)
 
 ### ffmpeg下载及配置
 
@@ -456,3 +459,41 @@ ffmpeg弹幕压制与[字幕压制](#字幕压制)命令是一样的，第一次
 <img src="picture/Snipaste_2021-09-05_15-08-48.png" alt="Snipaste_2021-09-05_15-08-48" width="800" />
 
 保存退出，一段2分钟的视频和弹幕就拿到了
+
+#### 硬件加速
+
+##### N卡
+
+最基本的一条压制代码，可以调整参数，加入其他选项
+
+```
+ffmpeg -vsync 0 –hwaccel cuvid -c:v h264_cuvid -i input.flv -vf subtitles=input.ass -c:a copy -c:v h264_nvenc -b:v 14M -preset p5 output.flv
+```
+
+vsync在ffmpeg官方文档里面有，打开ffmpeg官方文档网页按Ctrl+F搜索，preset在ffmpeg命令行帮助里面有，其他选项的含义在英伟达官方文档1里面有，查看x264参数解释适当添加其他参数
+
+[ffmpeg官方文档](https://www.ffmpeg.org/ffmpeg-all.html)
+
+[英伟达官方文档1](https://developer.nvidia.com/zh-cn/blog/nvidia-ffmpeg-transcoding-guide/)
+
+[英伟达官方文档2](https://docs.nvidia.com/video-technologies/video-codec-sdk/ffmpeg-with-nvidia-gpu/index.html)
+
+[x264参数解释](www.nmm-hd.org/d/index.php?title=X264設定)
+
+ffmpeg命令行查看帮助
+
+```
+ffmpeg -hide_banner -h encoder=h264_nvenc      //h264_nvenc编码器说明
+ffmpeg -hide_banner -h decoder=h264_cuvid      //h264_cuvid解码器说明
+//同样可以查看其他解码编码器的说明
+```
+
+##### A卡
+
+ffmpeg中A卡的编码器是h264_amf，A卡的资料太少了，自行摸索吧
+
+ffmpeg命令行查看帮助
+
+```
+ffmpeg -hide_banner -h encoder=h264_amf        //h264_amf编码器说明
+```
