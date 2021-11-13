@@ -261,9 +261,9 @@ ffmpeg -i input.flv -i input.flac -c copy output.mkv
 在视频所在目录右键新建一个txt文件，名字随意，这里命名为input.txt。打开txt文件，按拼接顺序输入视频的路径，格式如下
 
  ```
- file 'D:\xxx\xxx\input1.flv'
- file 'D:\xxx\xxx\input2.flv'
- file 'D:\xxx\xxx\input3.flv'
+ file '.\input1.flv'
+ file '.\input2.flv'
+ file '.\input3.flv'
  ```
 
 一行一个文件，用英文单引号把路径引起来，file后面有个空格，保存文件
