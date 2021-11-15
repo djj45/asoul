@@ -165,6 +165,27 @@ ffprobe input.flv
 
 <img src="picture/Snipaste_2021-08-31_16-33-48.png" alt="Snipaste_2021-08-31_16-33-48" width="700" />
 
+#### -map的使用
+
+上图的视频信息前面有`Stream #0:0`，音频信息前面有`Stream #0:1`，这是ffmpeg给每一个视频内部不同的媒体（视频、音频、字幕）的编号，从0开始，例如
+
+- 1.mp4
+  - Stream #0:0 video
+  - Stream #0:1 audio
+- 2.flv
+  - Stream #0:0 video
+  - Stream #0:1 audio
+- 3.mkv
+  - Stream #0:0 video
+  - Stream #0:1 audio
+  - Stream #0:2 subtitle
+
+```
+ffmpeg -i 1.mp4 -i 2.flv -i 3.mkv -map 0:0 -map 1:1 -map 2:2 -c copy output.mkv
+```
+
+上面命令的意思是把mp4里面的视频，flv里面的音频，mkv里面的字幕重新封装成一个新的mkv文件。
+
 ### ffmpeg命令（不转码）
 
 #### 停止命令
@@ -275,6 +296,39 @@ ffmpeg -f concat -safe 0 -i input.txt -c copy output.flv
 ```
 
 如果没有-safe 0，ffmpeg会警告文件不安全，拼接失败，-f concat，f是format的缩写，格式的意思，concat是一种拼接的方式，文件的路径已经写入txt文件里面了，所以输入txt文件即可，-c copy不转码，直接合并
+
+如果出现几条黄色的警告写着时间戳错误，ffmpeg会自动修正，不必理会
+
+#### MP4封装与提取SRT字幕
+
+SRT字幕必须是UTF-8编码，如果不是，要加入选项`-sub_charenc xxx`指定SRT的编码格式，推荐用记事本打开非UTF-8编码的SRT字幕文件，另存为UTF-8编码
+
+mp4内封软字幕
+
+```
+ffmpeg -i input.mp4 -i input.srt -c:a copy -c:v copy -c:s mov_text output.mp4 //默认UTF-8编码
+ffmpeg -i input.mp4 -sub_charenc xxx -i input.srt -c:a copy -c:v copy -c:s mov_text output.mp4 //指定编码格式
+```
+
+MP4内封软字幕有可能需要在播放器里面手动选择一下字幕，应用比较少，可能有些播放器不支持，慎用
+
+mp4提取软字幕
+
+```
+ffmpeg -i input.mp4 -map 0:2 output.mp4
+```
+
+命令不一定是`-map 0:2`，按实际情况填写，参考[map的使用](#-map的使用)
+
+#### 多音轨与多字幕电影的处理
+
+如果下载了多音轨与多字幕的电影，想放到手机上看，但是手机又不方便切换音轨与字幕，可以用ffmpeg处理一下
+
+```
+ffmpeg -i input.mkv -map 0:x -map 0:y -map 0:z output.mkv
+```
+
+`-map 0:x -map 0:y -map 0:z`中的xyz按实际填写，参考[map的使用](#-map的使用)
 
 ### ffmpeg命令（转码/压制）
 
