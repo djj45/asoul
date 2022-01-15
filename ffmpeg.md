@@ -244,9 +244,15 @@ ffmpeg -i input.flv -an -c:v copy output.flv
 
 ffmpeg可以粗剪视频（在关键帧处剪断，可能有几秒误差），速度很快，无损剪辑
 
+注意，flv格式的视频要先无损转换为mp4格式再剪辑，否则视频画面有时会卡住几秒
+
 ```
-ffmpeg -ss 00:10:05 -to 00:10:15 -accurate_seek -i input.flv -c copy -avoid_negative_ts 1 output.flv
-ffmpeg -ss 00:10:05 -t 10 -accurate_seek -i input.flv -c copy -avoid_negative_ts 1 output.flv
+ffmpeg -i input.flv -c copy output.mp4
+```
+
+```
+ffmpeg -ss 00:10:05 -to 00:10:15 -accurate_seek -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
+ffmpeg -ss 00:10:05 -t 10 -accurate_seek -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
 ```
 
 两种代码效果一样，都是剪10秒的视频，-ss后面是开始时间，-to后面是结束时间，-t后面是往后剪的秒数，-accurate_seek加速寻找关键帧，-c copy是音视频都不转码，-avoid_negative_ts 1字面意思是避免错误的时间戳（avoid negative time stamp），1是不避免，不加这一句的话有时剪出来前面有几秒有画面没有声音
