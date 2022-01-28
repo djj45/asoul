@@ -251,11 +251,11 @@ ffmpeg -i input.flv -c copy output.mp4
 ```
 
 ```
-ffmpeg -ss 00:10:05 -to 00:10:15 -accurate_seek -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
-ffmpeg -ss 00:10:05 -t 10 -accurate_seek -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
+ffmpeg -ss 00:10:05 -to 00:10:15 -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
+ffmpeg -ss 00:10:05 -t 10 -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
 ```
 
-两种代码效果一样，都是剪10秒的视频，-ss后面是开始时间，-to后面是结束时间，-t后面是往后剪的秒数，-accurate_seek加速寻找关键帧，-c copy是音视频都不转码，-avoid_negative_ts 1字面意思是避免错误的时间戳（avoid negative time stamp），1是不避免，不加这一句的话有时剪出来前面有几秒有画面没有声音
+两种代码效果一样，都是剪10秒的视频，-ss后面是开始时间，-to后面是结束时间，-t后面是往后剪的秒数，-c copy是音视频都不转码，-avoid_negative_ts 1字面意思是避免错误的时间戳（avoid negative time stamp），1是不避免，不加这一句的话有时剪出来前面有几秒有画面没有声音
 
 ffmpeg会剪到关键帧上，如果视频的关键帧每5秒一个，开始时间与结束时间刚好在两个关键帧的中间，-ss，-to，-t在-i前面，没有剪到关键帧的话ffmpeg会剪到最近的前面一个关键帧，导致开始时间和结束时间都早了2.5秒。如果视频每秒1个关键帧，剪出来的视频可以精确到秒
 
