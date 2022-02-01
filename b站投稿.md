@@ -36,4 +36,4 @@ b站官方给出的转载与自制区别
 
 ### b站视频推送机制
 
-https://www.douban.com/group/topic/255649682
+https://www.douban.com/group/topic/255649682/?_i=3700324RMhUFsw

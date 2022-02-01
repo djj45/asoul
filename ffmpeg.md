@@ -45,6 +45,8 @@
 
 #### ffmpeg下载
 
+[ffmpeg5.0代理下载直链](https://download.fastgit.org/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-gpl-5.0.zip)
+
 [ffmpeg官网下载](https://ffmpeg.org/download.html)
 
 <img src="picture/Snipaste_2021-08-29_19-40-51.png" alt="Snipaste_2021-08-29_19-40-51" width="700" />
