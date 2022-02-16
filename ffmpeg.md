@@ -559,6 +559,17 @@ ffmpeg -i input.mp4 -r fps output.gif        //-r指定帧率，转换过程中�
 
 如果想获取更加高清的gif图，请参考https://gif.ski/
 
+#### 改变分辨率
+
+改变分辨率指将视频的分辨率放大或者缩小，分辨率变大会模糊，分辨率变小会丢失细节，实际上并没有什么作用，很少用到。如果想要超分辨率，使视频更加清晰，建议用AI超分辨率。如果视频的分辨率与显示器的分辨率不一致，播放器会调用渲染器将视频的分辨率缩放为与显示器一致，清晰度与缩放算法有关。
+
+```
+ffmpeg -i input.mp4 -c:v libx264 -c:a copy -crf 17 -preset 7 -vf scale=1280:720 output.mp4
+ffmpeg -i input.mp4 -c:v libx264 -c:a copy -crf 17 -preset 7 -vf scale=1280:-1 output.mp4
+```
+
+`-1`指高按照原视频比例
+
 #### 硬件加速
 
 ##### N卡
