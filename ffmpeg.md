@@ -23,6 +23,7 @@
   - [拼接视频](#拼接视频)
   - [MP4封装与提取SRT字幕](#MP4封装与提取SRT字幕)
   - [多音轨与多字幕电影的处理](#多音轨与多字幕电影的处理)
+  - [FLAC转WAV](#FLAC转WAV)
 - [ffmpeg命令（转码/压制）](#ffmpeg命令（转码/压制）)
   - [什么是转码](#什么是转码)
   - [一些参数和模式的含义](#一些参数和模式的含义)
@@ -37,6 +38,8 @@
     - [pr插件](#pr插件)
   - [弹幕压制](#弹幕压制)
     - [截取录播与弹幕](#截取录播与弹幕)
+  - [裁剪画面](#裁剪画面)
+  - [视频转GIF](#视频转GIF)
   - [硬件加速](#硬件加速)
     - [N卡](#N卡)
     - [A卡](#A卡)
@@ -342,6 +345,16 @@ ffmpeg -i input.mkv -map 0:x -map 0:y -map 0:z output.mkv
 
 `-map 0:x -map 0:y -map 0:z`中的xyz按实际填写，参考[map的使用](#-map的使用)
 
+#### FLAC转WAV
+
+在采样率和位深度不变的前提下，flac转wav是无损的，相当于解压缩。ffmpeg默认转换前后采样率不变，位深度为16位。如果是24位或者32位的flac无损转换，需要指定编码器`pcm_s24le`或者`pcm_s32le`
+
+```
+ffmpeg -i inputfile.flac output.wav                          //普通命令
+ffmpeg -i inputfile.flac -c:a pcm_s16le output.wav           //普通命令完整版
+ffmpeg -i inputfile.flac -c:a pcm_s24le output.wav           //24位flac转24位wav，32位同理
+```
+
 ### ffmpeg命令（转码/压制）
 
 #### 什么是转码
@@ -525,6 +538,26 @@ ffmpeg弹幕压制与[字幕压制](#字幕压制)命令是一样的，第一次
 <img src="picture/Snipaste_2021-09-05_15-08-48.png" alt="Snipaste_2021-09-05_15-08-48" width="800" />
 
 保存退出，一段2分钟的视频和弹幕就拿到了
+
+#### 裁剪画面
+
+裁剪画面指把视频的某一区域裁剪出来
+
+```
+ffmpeg -i input.mp4 -c:v libx264 -c:a copy -crf 17 -preset 7 -vf crop=width:height:start_x:start_y output.mp4
+```
+
+`width`指裁剪后的视频宽度，`height`指裁剪后的视频高度，`start_x`与`start_y`分别指裁剪区域的左上角的xy坐标。坐标可以用[Snipaste](https://www.snipaste.com/)截图时获取。如果视频分辨率与显示器的分辨率不一致，还要进行坐标换算。
+
+#### 视频转GIF
+
+建议用[GifCam](https://blog.bahraniapps.com/gifcam/#download)或者[ScreenToGif](https://www.screentogif.com/)用屏幕录制的方式做gif，不建议用ffmpeg做gif
+
+```
+ffmpeg -i input.mp4 -r fps output.gif        //-r指定帧率，转换过程中会出现xxx无法加速的警告，不影响转换
+```
+
+如果想获取更加高清的gif图，请参考https://gif.ski/
 
 #### 硬件加速
 
