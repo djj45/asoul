@@ -12,7 +12,7 @@ A-SOUL录播，打轴，压制，投稿方法，请务必认真看完[介绍](#�
 
 流程图：
 
-<img src="picture/asoul.svg" alt="asoul" width=900 />
+<img src="https://cdn.jsdelivr.net/gh/djj45/asoul@master/picture/asoul.svg" width=900 />
 
 新人快速入门：
 
