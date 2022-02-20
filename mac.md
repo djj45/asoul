@@ -72,6 +72,10 @@ github版，2014年发布，版本过旧
 
 https://githubdl.djj45.workers.dev/https://github.com/Aegisub/Aegisub/releases/download/v3.2.2/Aegisub-3.2.2.dmg
 
+### 剪映字幕提取
+
+https://gitee.com/djj45/jianyingsrt
+
 ### ffmpeg
 
 源码：https://ffmpeg.org/download.html#get-sources
