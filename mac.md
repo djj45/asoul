@@ -1,3 +1,12 @@
+- [前言](#前言)
+- [录播](#录播)
+- [录播分段下载](#录播分段下载)
+- [Aegisub](#Aegisub)
+- [剪映字幕提取](#剪映字幕提取)
+- [ffmpeg](#ffmpeg)
+  - [下载](#下载)
+  - [配置环境变量](#配置环境变量)
+
 ### 前言
 
 本文介绍的方法为最适合小白的方法，由于我没有Mac系统，所以用Windows系统演示，与Mac系统步骤是一样的。~~提到的软件并没有能直接用于M1芯片的版本，需要源码编译安装，要有一定的计算机基础才能解决。~~我忘记还有rosetta2了，不需要自己编译了，我还找到了Aegisub和ffmpeg的m1版。
@@ -115,4 +124,3 @@ export PATH=$PATH:$ffmpeg
 export ffprobe=/usr/local/ffprobe
 export PATH=$PATH:$ffprobe
 ```
-
