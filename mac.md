@@ -1,10 +1,16 @@
 ### 前言
 
-本文介绍的方法为最适合小白的方法，由于我没有Mac系统，所以用Windows系统演示，与Mac系统步骤是一样的。提到的软件并没有能直接用于M1芯片的版本，需要源码编译安装，要有一定的计算机基础才能解决
+本文介绍的方法为最适合小白的方法，由于我没有Mac系统，所以用Windows系统演示，与Mac系统步骤是一样的。~~提到的软件并没有能直接用于M1芯片的版本，需要源码编译安装，要有一定的计算机基础才能解决。~~我忘记还有rosetta2了，不需要自己编译了，我还找到了Aegisub和ffmpeg的m1版。
 
 ### 录播
 
-[blrec](https://github.djj45.workers.dev/acgnhiki/blrec)是用python写的，可以直接用pip安装，考虑到可能会有依赖等问题，故采用docker安装
+[blrec](https://github.djj45.workers.dev/acgnhiki/blrec)是用python写的，可以直接用pip安装，考虑到可能会有依赖等问题，故采用docker安装。m1不能用blrec的docker版，用pip不知道能不能装上。如果不可以，多尝试几个项目
+
+https://github.djj45.workers.dev/valkjsaaa/auto-bilibili-recorder
+
+https://github.djj45.workers.dev/AsaChiri/DDRecorder
+
+都不行的话，[可以用ffmpeg录抖音](./录播.md#抖音录播)，不过录不了b限和弹幕，视频码率低2k
 
 - 安装docker
 
@@ -62,6 +68,10 @@
 
 源码：https://github.djj45.workers.dev/Aegisub/Aegisub
 
+M1版：https://gist.github.com/frozenpandaman/92a84cd2ba690bb2399afd04e695bf8c
+
+M1版下载直链：https://elifessler.com/aegi/6a556aa-Aegisub.app.zip
+
 **建议优先使用2018版**
 
 测试版，2018年发布
@@ -82,9 +92,11 @@ https://gitee.com/djj45/jianyingsrt
 
 #### 下载
 
-https://evermeet.cx/ffmpeg/
+官网版：https://evermeet.cx/ffmpeg/
 
-ffmpeg是加字幕用的。ffprobe是分析视频信息用的，非必要。由于这个网站下载实在太慢，我已经下载好了这两个压缩包，点击链接即可下载。mac解压7z格式需要额外的软件，嫌麻烦的可以下载解压后的文件。
+第三方版，支持m1：https://www.osxexperts.net/
+
+ffmpeg是加字幕用的。ffprobe是分析视频信息用的，非必要。由于这两个网站下载速度可能很慢，我已经下载好了这两个压缩包，点击链接即可下载。mac解压7z格式需要额外的软件，嫌麻烦的可以下载解压后的文件。
 
 https://od.djj45.workers.dev/%E8%BD%AF%E4%BB%B6/ffmpeg_mac/
 
