@@ -606,6 +606,8 @@ mp4与mkv的区别就是mkv可以封装无损音频格式flac， 不过绝大部
 
 #### 硬件加速
 
+显卡里面有独立的解码与编码单元，与显卡算力无关，一般来说，显卡发布时间越近，编解码单元支持的功能越多。如果只是单纯解码与编码，显卡的占用率并不高。当涉及到图像的缩放或者YUV与RGB转换（播放视频）等时候，就需要显卡的算力来计算了，显卡占用率高。N卡的文档多，A卡的文档太少了，建议去谷歌找硬件加速的资料。基本用预设就够了，不需要用一些花里胡哨的参数，相信自己的眼睛，自己看不出区别就是没有区别
+
 ##### N卡
 
 最基本的一条压制代码，可以调整参数，加入其他选项
@@ -614,15 +616,13 @@ mp4与mkv的区别就是mkv可以封装无损音频格式flac， 不过绝大部
 ffmpeg -vsync 0 –hwaccel cuvid -c:v h264_cuvid -i input.flv -vf subtitles=input.ass -c:a copy -c:v h264_nvenc -b:v 14M -preset p5 output.flv
 ```
 
-vsync在ffmpeg官方文档里面有，打开ffmpeg官方文档网页按Ctrl+F搜索，preset在ffmpeg命令行帮助里面有，其他选项的含义在英伟达官方文档1里面有，查看x264参数解释适当添加其他参数
+vsync在ffmpeg官方文档里面有，打开ffmpeg官方文档网页按Ctrl+F搜索，preset在ffmpeg命令行帮助里面有，其他选项的含义在英伟达官方文档1里面有
 
 [ffmpeg官方文档](https://www.ffmpeg.org/ffmpeg-all.html)
 
 [英伟达官方文档1](https://developer.nvidia.com/zh-cn/blog/nvidia-ffmpeg-transcoding-guide/)
 
 [英伟达官方文档2](https://docs.nvidia.com/video-technologies/video-codec-sdk/ffmpeg-with-nvidia-gpu/index.html)
-
-[x264参数解释](www.nmm-hd.org/d/index.php?title=X264設定)
 
 ffmpeg命令行查看帮助
 
@@ -634,7 +634,11 @@ ffmpeg -hide_banner -h decoder=h264_cuvid      //h264_cuvid解码器说明
 
 ##### A卡
 
-ffmpeg中A卡的编码器是h264_amf，A卡的资料太少了，自行摸索吧
+ffmpeg中A卡的编码器是h264_amf，A卡的资料太少了，自行摸索吧，参考代码
+
+```
+ffmpeg -i input.mp4 -c:a copy -c:v h264_amf -quality 0 -vf subtitles=input.ass output.mp4
+```
 
 ffmpeg命令行查看帮助
 
