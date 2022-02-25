@@ -11,13 +11,14 @@
   - [输入习惯](#输入习惯)
 - [ffprobe的使用](#ffprobe的使用)
   - [-map的使用](#-map的使用)
-
+  - [查看关键帧位置](#查看关键帧位置)
+  
 - [ffmpeg命令（不转码）](#ffmpeg命令（不转码）)
   - [停止命令](#停止命令)
   - [转封装](#转封装)
   - [视频提取音频](#视频提取音频)
   - [视频去掉音频](#视频去掉音频)
-  - [视频粗剪](#视频粗剪)
+  - [视频剪辑](#视频剪辑)
   - [音频剪辑](#音频剪辑)
   - [更换音频](#更换音频)
   - [拼接视频](#拼接视频)
@@ -199,6 +200,28 @@ ffmpeg -i 1.mp4 -i 2.flv -i 3.mkv -map 0:0 -map 1:1 -map 2:2 -c copy output.mkv
 
 上面命令的意思是把mp4里面的视频，flv里面的音频，mkv里面的字幕重新封装成一个新的mkv文件。
 
+#### 查看关键帧位置
+
+```
+ffprobe -hide_banner -select_streams v -skip_frame nokey -show_entries frame=pts_time,pict_type input.mp4
+```
+
+`-hide_banner`是不输出ffprobe版本信息，因为输出的内容有点多且与视频时间长度有关，所以为了输出的内容更少，加上了这个选项。
+
+输出如下
+
+```
+[FRAME]
+pts_time=0.048000
+pict_type=I
+[/FRAME]
+[FRAME]
+pts_time=4.215000
+pict_type=I
+[/FRAME]
+...
+```
+
 ### ffmpeg命令（不转码）
 
 #### 停止命令
@@ -249,7 +272,7 @@ ffmpeg -i input.flv -an -c:v copy output.flv
 
 -an表示去掉音频，-c:v表示视频编码器，copy，直接复制，-c:v copy表示视频不转码，output.flv可以换成output.mp4，去掉音频与转封装结合
 
-#### 视频粗剪
+#### 视频剪辑
 
 ffmpeg可以粗剪视频（在关键帧处剪断，可能有几秒误差），速度很快，无损剪辑
 
@@ -264,9 +287,49 @@ ffmpeg -ss 00:10:05 -to 00:10:15 -i input.mp4 -c copy -avoid_negative_ts 1 outpu
 ffmpeg -ss 00:10:05 -t 10 -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
 ```
 
-两种代码效果一样，都是剪10秒的视频，-ss后面是开始时间，-to后面是结束时间，-t后面是往后剪的秒数，-c copy是音视频都不转码，-avoid_negative_ts 1字面意思是避免错误的时间戳（avoid negative time stamp），1是不避免，不加这一句的话有时剪出来前面有几秒有画面没有声音
+两种代码效果一样，都是剪10秒的视频，-ss后面是开始时间，-to后面是结束时间，-t后面是往后剪的秒数，-c copy是音视频都不转码，-avoid_negative_ts 1字面意思是避免错误的时间戳（avoid negative time stamp），1是不避免，不加这一句的话有时剪出来前面有几秒有画面没有声音，`00:10:05`这种形式也可以用秒即`605`来表示，ffmpeg是支持多位小数的，见下面的命令
 
 ffmpeg会剪到关键帧上，如果视频的关键帧每5秒一个，开始时间与结束时间刚好在两个关键帧的中间，-ss，-to，-t在-i前面，没有剪到关键帧的话ffmpeg会剪到最近的前面一个关键帧，导致开始时间和结束时间都早了2.5秒。如果视频每秒1个关键帧，剪出来的视频可以精确到秒
+
+什么是关键帧呢，输入命令
+
+```
+ffprobe -hide_banner -select_streams v -show_entries frame=pict_type output.mp4
+```
+
+会输出一大堆东西，马上`Ctrl+C`打断输出即可，找到一个I帧，即关键帧，往下看发现帧是按照IBBPBBP...I排列的，这是视频编码格式规定的。为什么要这样规定呢，答案是为了节省储存空间，I帧记录是完整的画面，而BP帧记录的是在很短的时间里面的变化画面，不变的画面信息是不会记录的，大部分播放器的进度条只能拖到关键帧（指的是离线视频而不是在线视频），因为这样加载快，如果播放器可以拖到非关键帧的位置，那么必须要解码前面一个关键帧才能获取完整的图像，加载比较慢。因为I帧记录的是完整的画面，所以在I帧处剪断是无损的，否则必须重新编码，如pr是有损剪辑。有关更多IBP帧的知识可以看[这篇文章](https://www.cnblogs.com/yongdaimi/p/10676309.html)
+
+关键帧的具体位置到底在哪里呢，可以通过ffprobe[查看关键帧位置](#查看关键帧位置)，然后就可以在确定的关键帧处剪开了
+
+```
+ffmpeg -ss 0.048 -to 12.548 -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
+```
+
+但是这样做毕竟太麻烦了，而且剪辑时候的画面要用播放器打开，看一下大概时间点在哪里，然后记录下时间。[有一款基于ffmpeg的可视化剪辑软件](https://github.djj45.workers.dev/mifi/lossless-cut/releases)，这个软件一个很棒的特点是不像pr之类的软件把10G左右的录播导入进去很慢而且占用大量内存导致电脑卡顿，非常适合内存小的电脑。虽然这个软件也可以从除了关键帧之外的任意帧开始切割，但是建议不要用，因为导出的视频可能会有一段空白（该软件的说明，我实际测试也是这样，但是用ffmpeg命令行是没有问题的，原因未知）。无损切割是ffmpeg做得到pr做不到的事情，非无损切割请尽量用pr
+
+如果非要不在关键帧的地方剪辑，不惜损失质量，也不是不可以
+
+```
+ffmpeg -ss 1.5 -t 10 -i input.mp4 -c:v libx264 -c:a copy -crf 17 -preset 7 output.mp4
+```
+
+如果非要小数，建议留一位小数即可，用ffmpeg剪辑我感觉这个精度已经够高了
+
+但是上面这条命令整段都转码了，慢而且质量下降，如果是在剪的过程中加入压制字幕的选项倒是没有什么问题，反正都是要转码，如果是单纯地想剪出来，还有一个更好的方法
+
+比如我想从1.5秒开始剪到20秒，离1.5秒最近的关键帧在5.135秒处
+
+```
+ffmpeg -ss 1.5 -to 5.135 -i input.mp4 -c:v libx264 -c:a copy -crf 17 -preset 7 output.mp4
+```
+
+然后从5.123秒剪到离20秒最近的关键帧，比如是19.923秒
+
+```
+ffmpeg -ss 5.123 -to 19.923 -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
+```
+
+然后再把两段视频[合并](#拼接视频)起来
 
 #### 音频剪辑
 
