@@ -10,6 +10,8 @@ A-SOUL录播，打轴，压制，投稿方法，请务必认真看完[介绍](#�
 
 本文适合切片man，教你怎样切片加字幕投稿b站，适用Windows与Mac（M1需要自行编译），原本所有程序的安装方法是Windows上的，现在增加了[在Mac上的使用方法](./mac.md)。可能会用到python，我写了[安装python的方法](./杂篇.md#python)。
 
+有疑问和建议欢迎私信：https://space.bilibili.com/200257325
+
 流程图：
 
 <img src="https://cdn.jsdelivr.net/gh/djj45/asoul@master/picture/asoul.svg" width=900 />
