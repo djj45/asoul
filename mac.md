@@ -6,6 +6,7 @@
 - [ffmpeg](#ffmpeg)
   - [下载](#下载)
   - [配置环境变量](#配置环境变量)
+- [xml弹幕转ass弹幕](#xml弹幕转ass弹幕)
 
 ### 前言
 
@@ -18,8 +19,6 @@
 https://github.djj45.workers.dev/valkjsaaa/auto-bilibili-recorder
 
 https://github.djj45.workers.dev/AsaChiri/DDRecorder
-
-都不行的话，[可以用ffmpeg录抖音](./录播.md#抖音录播)，不过录不了b限和弹幕，视频码率低2k
 
 - 安装docker
 
@@ -124,3 +123,9 @@ export PATH=$PATH:$ffmpeg
 export ffprobe=/usr/local/ffprobe
 export PATH=$PATH:$ffprobe
 ```
+
+### xml弹幕转ass弹幕
+
+https://github.djj45.workers.dev/hihkm/DanmakuFactory#linux
+
+这个只能自己编译了

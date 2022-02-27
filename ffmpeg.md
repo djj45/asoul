@@ -53,13 +53,13 @@
 
 #### ffmpeg下载
 
-[ffmpeg5.0代理下载直链](https://download.fastgit.org/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-gpl-5.0.zip)
+[ffmpeg5.0代理下载直链（推荐）](https://githubdl.djj45.workers.dev/https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-gpl-5.0.zip)
 
 [ffmpeg官网下载](https://ffmpeg.org/download.html)
 
 <img src="picture/Snipaste_2021-08-29_19-40-51.png" alt="Snipaste_2021-08-29_19-40-51" width="700" />
 
-鼠标移动到Windows图标，点击上面这个。其实下面这个也行，区别就是不同的人用同一种源码编译的，不过GitHub不用[加速下载](http://shrill-pond-3e81.hunsh.workers.dev/)网站的话下载比较慢
+鼠标移动到Windows图标，点击上面这个。其实下面这个也行，区别就是不同的人用同一种源码编译的
 
 往下拉，下载这个，下载后解压
 
@@ -593,6 +593,12 @@ ffmpeg -i input.flv -c:a copy -c:v libx264 -crf 17 -vf subtitles=input.ass -pres
 如果对不上，用记事本打开ass文件，ffmpeg会把名字无法识别，名字错误，没有的字体换成其他字体，比如思源黑体 CN是不能识别的，需要改名为Source Han Sans CN。
 
 <img src="picture/Snipaste_2021-09-12_16-36-10.png" alt="Snipaste_2021-09-12_16-36-10" width="800" />
+
+字体的英文名可以用这个方法找到：
+
+https://docs.manim.community/en/stable/tutorials/using_text.html#using-fonts
+
+不过ffmpeg5.0好像可以正确识别中文字体名了
 
 ##### pr插件
 

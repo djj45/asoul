@@ -4,6 +4,8 @@
 - [分区和标签](#分区和标签)
 - [b站视频推送机制](#b站视频推送机制)
 
+大概从2021年11月底开始，b站投稿占用b站储存空间过多的UP主（如录播UP主）陆续被b站限制投稿的视频码率，目前仅仅是对事实的合理推测，证据：https://www.douban.com/group/topic/260834742
+
 ### 投稿方式
 
 [网页投稿](https://member.bilibili.com/platform/upload/video/frame)
