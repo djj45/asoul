@@ -80,9 +80,9 @@ M1版：https://gist.github.com/frozenpandaman/92a84cd2ba690bb2399afd04e695bf8c
 
 M1版下载直链：https://elifessler.com/aegi/6a556aa-Aegisub.app.zip
 
-**建议优先使用2018版**
+第三方新版：
 
-测试版，2018年发布
+**建议使用这个**：https://github.djj45.workers.dev/wangqr/Aegisub/releases
 
 http://plorkyeran.com/aegisub/
 
