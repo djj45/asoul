@@ -8,6 +8,28 @@ A-SOUL录播，打轴，压制，投稿方法，请务必认真看完[介绍](#�
 
 前后写了很长时间，到百度、谷歌、CSDN、维基百科、百度贴吧、b站、软件官网等网站找了很多资料，终于完结了，后续应该没有什么可以更新的了
 
+#### TODO
+
+FFmpegGUI，难者不会:hand:，期待大佬开发
+
+目前有很多x264、ffmpeg或者其他编码器的GUI
+
+https://github.djj45.workers.dev/zhen-ke/ffmpegGUI
+
+https://github.djj45.workers.dev/hoshinohikari/StarTools
+
+https://github.djj45.workers.dev/zyzsdy/NegativeEncoder
+
+https://maruko.appinn.me/
+
+https://gitee.com/haujet/QuickCut
+
+https://ilharper.com/b/legacyproj#rmbox
+
+但是我的想法是能有一款同时方便小白和懂音视频的人的软件，要跨平台，Mac和Windows都可以用，操作和参数可以自定义，这样不仅能随心所欲地调节自己想要的参数，还能作为其他命令行工具的GUI。软件一定要方便小白使用，把文件拖进去就ok了，无需多余的操作，不满足需求的人可以学习别人的参数或者导入配置，而大佬可以随意调节参数
+
+比较符合我的想法的是https://ilharper.com/b/legacyproj#rmbox，不过软件体积有点过于恐怖了，而且操作有点麻烦。我喜欢的界面是这个https://github.djj45.workers.dev/zhen-ke/ffmpegGUI
+
 #### 介绍
 
 本文适合切片员和录播员，教你怎样录播切片加字幕投稿b站。这套方法入门可能需要不少时间，但是我保证绝对是视频成品质量最高，产出速度最快的方法。本文提到的所有软件都是免费、全平台的，除了剪映之外都是开源的。适用Windows与Mac（M1需要自行编译），原本所有程序的安装方法是Windows上的，现在增加了[在Mac上的使用方法](./mac.md)。可能会用到python，我写了[安装python的方法](./杂篇.md#python)
