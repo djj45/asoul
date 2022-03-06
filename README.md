@@ -28,7 +28,13 @@ https://ilharper.com/b/legacyproj#rmbox
 
 但是我的想法是能有一款同时方便小白和懂音视频的人的软件，要跨平台，Mac和Windows都可以用，操作和参数可以自定义，这样不仅能随心所欲地调节自己想要的参数，还能作为其他命令行工具的GUI。软件一定要方便小白使用，把文件拖进去就ok了，无需多余的操作，不满足需求的人可以学习别人的参数或者导入配置，而大佬可以随意调节参数
 
-比较符合我的想法的是https://ilharper.com/b/legacyproj#rmbox，不过软件体积有点过于恐怖了，而且操作有点麻烦。我喜欢的界面是这个https://github.djj45.workers.dev/zhen-ke/ffmpegGUI
+比较符合我的想法的是
+
+https://ilharper.com/b/legacyproj#rmbox
+
+不过软件体积有点过于恐怖了，而且操作有点麻烦。我喜欢的界面是这个
+
+https://github.djj45.workers.dev/zhen-ke/ffmpegGUI
 
 #### 介绍
 
@@ -97,7 +103,7 @@ Mac用的人相对少，在Mac上录播和切片的教程估计没有，我虽�
 
 #### [杂篇](./杂篇.md)
 
-PotPlayer配置，小丸工具箱下载和简单使用，dd烤肉机介绍，图片超分辨率，pr&ae教程，python的安装，FFmpegGUI
+PotPlayer配置，小丸工具箱下载和简单使用，dd烤肉机介绍，图片超分辨率，pr&ae教程，python的安装
 
 #### [拓展阅读](./拓展阅读.md)
 
