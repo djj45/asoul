@@ -51,7 +51,7 @@ https://github.djj45.workers.dev/AsaChiri/DDRecorder
 
 - 下载github源码
 
-  
+  https://github.djj45.workers.dev/A-Soul-Database/RangeDownloader/archive/refs/heads/main.zip
 
 - 解压并进入解压后的文件夹，[在这个目录下打开命令行窗口](https://zhuanlan.zhihu.com/p/162748665)
 
