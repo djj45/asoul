@@ -50,9 +50,11 @@ https://space.bilibili.com/200257325
 - arctime，arctime收费，没有必要付费，而且不付费功能不多，建议用开源免费的Aegisub
 - 达芬奇windows版，导出aac格式的音频只能是128k，同剪映，mac版可以导出320k
 
-流程图：
+在线流程图：
 
 <img src="https://cdn.jsdelivr.net/gh/djj45/asoul@master/picture/asoul.svg" width=900 />
+
+[离线流程图](./picture/asoul.svg)
 
 新人快速入门：
 
