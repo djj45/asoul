@@ -251,20 +251,19 @@ ffmpeg -i input.flv -vn -c:a copy output.m4a
 ffmpeg -i input.flv -vn -c:a copy output.aac
 ```
 
-两种代码都可以，一般转为m4a。转换之前建议看看视频里[音频的格式](#ffprobe的使用)，大多数视频里面的音频格式都是AAC，转m4a与转AAC都没有问题
+两种代码都可以，一般转为m4a。转换之前建议看看视频里[音频的格式](#ffprobe的使用)，大多数视频里面的音频格式都是AAC，转m4a与转AAC都没有问题。如果后续要用ffmpeg无损剪辑音频，要转为m4a格式，aac格式没有内含时间戳，ffmpeg根据码率推断时间戳，剪辑出现误差
 
 -vn表示去掉视频，-c:a是音频编码器，copy，直接复制，-c:a copy就是音频不转码的意思
 
 如果某些老旧的设备或者软件兼容性比较差，音频转为mp3格式。如果视频里面的音频本来就是mp3格式，那就不用转码了，直接-c:a copy就行
 
 ```
-ffmpeg -i input.flv -vn -c:a libmp3lame -ar 44100 -ab 320k -ac 2 output.mp3
 ffmpeg -i input.flv -vn -c:a libmp3lame -ab 320k output.mp3
 ```
 
 上面的代码为完整版，下面的代码为简化版，比特率默认是128k，所以想转换成320k码率的mp3一定要设置。mp3的最高码率是320k，常见的码率有128k，192k，320k。转换成什么码率看原来是什么码率左右，一般转成常见码率，如果写成300k，310k的话自动转成320k，有些码率是转换不了的，视频里面的音频的码率一般是在128k，192k，320k上下浮动，不会是一些奇奇怪怪的码率
 
--vn表示去掉视频，-c:a是音频编码器，用libmp3lame编码，音频从原来的格式[转码](#什么是转码)变成了mp3格式，-ar后面是采样率，一般是44100Hz或者48000Hz，-ab后面是比特率，-ac后面是声道数，一般视频是双声道，电影有多个声道
+-vn表示去掉视频，-c:a是音频编码器，用libmp3lame编码，音频从原来的格式[转码](#什么是转码)变成了mp3格式，-ab后面是比特率
 
 #### 视频去掉音频
 
@@ -329,6 +328,8 @@ ffmpeg -ss 1.5 -t 10 -i input.mp4 -c:v libx264 -c:a copy -crf 17 -preset 7 outpu
 
 https://github.djj45.workers.dev/mifi/lossless-cut/releases
 
+用LosslessCut单独剪音频要在轨道里面把视频轨道禁用，输出格式选m4a或者aac
+
 注意，不要直接剪aac格式，因为aac格式里面没有音频的时长信息，ffmpeg根据音频码率计算时间，导致剪辑不精确，要先封装为m4a格式再剪辑
 
 ```
@@ -363,6 +364,8 @@ ffmpeg -i input.flv -i input.flac -c copy output.mkv
 
 #### 拼接视频
 
+前一段视频的结尾和后一段视频的开头一定要为关键帧，用录播姬切出来的视频符合要求
+
 在视频所在目录右键新建一个txt文件，名字随意，这里命名为input.txt。打开txt文件，按拼接顺序输入视频的路径，格式如下
 
  ```
@@ -381,7 +384,7 @@ ffmpeg -f concat -safe 0 -i input.txt -c copy output.flv
 
 如果没有-safe 0，ffmpeg会警告文件不安全，拼接失败，-f concat，f是format的缩写，格式的意思，concat是一种拼接的方式，文件的路径已经写入txt文件里面了，所以输入txt文件即可，-c copy不转码，直接合并
 
-如果出现几条黄色的警告写着时间戳错误，ffmpeg会自动修正，不必理会
+如果出现几条黄色的警告写着时间戳错误，ffmpeg会自动修正，不必理会，如果想没有黄字警告，可以先把视频全部转封装为mp4
 
 #### MP4封装与提取SRT字幕
 
@@ -430,6 +433,14 @@ n为循环次数，0为不循环
 
 ```
 ffmpeg -stream_loop n -i input.mp4 -c copy output.mp4
+```
+
+#### 自溜高码率带字幕切片
+
+视频从关键帧切断，字幕自己用aegisub做，封装为mkv格式
+
+```
+ffmpeg -i input.flv -i input.ass -c copy output.mkv
 ```
 
 ### ffmpeg命令（转码/压制）
