@@ -204,9 +204,10 @@ ffmpeg -i 1.mp4 -i 2.flv -i 3.mkv -map 0:0 -map 1:1 -map 2:2 -c copy output.mkv
 
 ```
 ffprobe -hide_banner -select_streams v -skip_frame nokey -show_entries frame=pts_time,pict_type input.mp4
+ffprobe -hide_banner -select_streams v -skip_frame nokey -show_entries frame=pts_time,pict_type input.mp4 > output.txt
 ```
 
-`-hide_banner`是不输出ffprobe版本信息，因为输出的内容有点多且与视频时间长度有关，所以为了输出的内容更少，加上了这个选项。
+`-hide_banner`是不输出ffprobe版本信息，因为输出的内容有点多且与视频时间长度有关，所以为了输出的内容更少，加上了这个选项。`> output.txt`是重定向输出到当前目录的文件`output.txt`，方便查看
 
 输出如下
 
@@ -295,10 +296,13 @@ ffmpeg会剪到关键帧上，如果视频的关键帧每5秒一个，开始时�
 什么是关键帧呢，输入命令
 
 ```
-ffprobe -hide_banner -select_streams v -show_entries frame=pict_type output.mp4
+ffprobe -hide_banner -select_streams v -show_entries frame=pict_type input.mp4
+ffprobe -hide_banner -select_streams v -show_entries frame=pict_type input.mp4 > output.txt
 ```
 
-会输出一大堆东西，马上`Ctrl+C`打断输出即可，找到一个I帧，即关键帧，往下看发现帧是按照IBBPBBP...I排列的，这是视频编码格式规定的。为什么要这样规定呢，答案是为了节省储存空间，I帧记录是完整的画面，而BP帧记录的是在很短的时间里面的变化画面，不变的画面信息是不会记录的，播放器的进度条可以设置仅定位到关键帧（指的是离线视频而不是在线视频），因为这样加载快，如果播放器可以拖到非关键帧的位置，那么必须要解码前面一个关键帧才能获取完整的图像，加载比较慢，不过以现在的电脑性能来说，几乎感觉不到很大的差异了。因为I帧记录的是完整的画面，所以在I帧处剪断是无损的，否则必须重新编码，如pr是有损剪辑。有关更多IBP帧的知识可以看[这篇文章](https://www.cnblogs.com/yongdaimi/p/10676309.html)
+`> output.txt`是重定向输出到当前目录的文件`output.txt`，方便查看
+
+第一条命令会输出一大堆东西，马上`Ctrl+C`打断输出即可，找到一个I帧，即关键帧，往下看发现帧是按照IBBPBBP...I排列的，这是视频编码格式规定的。为什么要这样规定呢，答案是为了节省储存空间，I帧记录是完整的画面，而BP帧记录的是在很短的时间里面的变化画面，不变的画面信息是不会记录的，播放器的进度条可以设置仅定位到关键帧（指的是离线视频而不是在线视频），因为这样加载快，如果播放器可以拖到非关键帧的位置，那么必须要解码前面一个关键帧才能获取完整的图像，加载比较慢，不过以现在的电脑性能来说，几乎感觉不到很大的差异了。因为I帧记录的是完整的画面，所以在I帧处剪断是无损的，否则必须重新编码，如pr是有损剪辑。有关更多IBP帧的知识可以看[这篇文章](https://www.cnblogs.com/yongdaimi/p/10676309.html)
 
 关键帧的具体位置到底在哪里呢，可以通过ffprobe[查看关键帧位置](#查看关键帧位置)，然后就可以在确定的关键帧处剪开了
 
