@@ -28,16 +28,14 @@ https://github.djj45.workers.dev/AsaChiri/DDRecorder
 
 - 启动
 
-  参照https://github.djj45.workers.dev/acgnhiki/blrec#docker中的默认参数，在命令行输入，第一次启动请耐心等待下载镜像，下载完成后在浏览器输入`localhost:2233`即可访问录播页面
+  参照https://github.djj45.workers.dev/acgnhiki/blrec#docker
 
-  ```
-  docker run -v ~/blrec:/rec -dp 2233:2233 acgnhiki/blrec
-  ```
-
+  中的默认参数，在命令行输入命令，第一次启动请耐心等待下载镜像，下载完成后在浏览器输入`localhost:2233`即可访问录播页面
+  
   简单说明一下docker的原理和这条命令的意思
 
   - docker是容器引擎，运行装在容器里面的程序，优点是可移植性强，把程序打包在一个容器里面，可以在不同CPU架构的电脑上运行，无需考虑不同电脑操作系统和依赖问题，系统能装docker，镜像支持该系统的CPU架构就可以运行
-  - `~`是home目录，即`/Users/xxx`，`~/blrec`是home目录下的blrec文件夹，即`/Users/xxx/blrec`，录播保存的路径，可修改。冒号后面的`/rec`目录是容器内部的目录，不能修改。第一个2233为本机端口，启动容器后在浏览器输入`localhost:2233`即可访问录播页面，可修改。冒号后面的2233为容器内部端口，不可修改
+- `~`是home目录，即`/Users/xxx`，`~/blrec`是home目录下的blrec文件夹，即`/Users/xxx/blrec`，录播保存的路径，可修改。冒号后面的`/rec`目录是容器内部的目录，不能修改。第一个2233为本机端口，启动容器后在浏览器输入`localhost:2233`即可访问录播页面，可修改。冒号后面的2233为容器内部端口，不可修改
 
 ### 录播分段下载
 
