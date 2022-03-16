@@ -629,13 +629,13 @@ pr插件有官方教程，我就不多说了，pr导出的时候码率一定要�
 
 ffmpeg弹幕压制与[字幕压制](#字幕压制)命令是一样的，第一次压制的时候建议先压制2分钟（至少半分钟）的弹幕，用较短的时间测试一下参数，调节到满意为止
 
-libpass对弹幕优化太渣，cpu占用率很低
+libpass对弹幕优化太渣，cpu占用率很低，弹幕的显示范围、不透明度、阴影之类的参数在弹幕转换软件里面调一下
 
-参考命令
+半屏弹幕参考命令
 
 ```
-ffmpeg -i input.flv -c:a copy -vf subtitles=input.ass -b:v 14M output.flv
-ffmpeg -i input.flv -c:a copy -vf subtitles=input.ass -preset 6 -b:v 14M output.flv
+ffmpeg -i input.flv -c:a copy -c:v libx264 -vf subtitles=input.ass -b:v 14M output.flv
+ffmpeg -i input.flv -c:a copy -c:v libx264 -vf subtitles=input.ass -preset 6 -b:v 14M output.flv
 ```
 
 ##### 截取录播与弹幕
