@@ -631,11 +631,16 @@ ffmpeg弹幕压制与[字幕压制](#字幕压制)命令是一样的，第一次
 
 libpass对弹幕优化太渣，cpu占用率很低，弹幕的显示范围、不透明度、阴影之类的参数在弹幕转换软件里面调一下
 
-半屏弹幕参考命令
+半屏弹幕参考命令，码率自己调吧，最多14M足够了，但是b站投稿限制4G，14M超了，建议自己算一下
 
 ```
-ffmpeg -i input.flv -c:a copy -c:v libx264 -vf subtitles=input.ass -b:v 14M output.flv
-ffmpeg -i input.flv -c:a copy -c:v libx264 -vf subtitles=input.ass -preset 6 -b:v 14M output.flv
+1g = 1024mb, 1mb = 1024kb
+音频码率320kbit，除以8是40kb/s，视频码率假设10Mbit，除以8是1.25mb/s，每个人录播时长不一样，大概算一下，码率在不超过限制的情况下越高越好
+```
+
+```
+ffmpeg -i input.flv -c:a copy -c:v libx264 -vf subtitles=input.ass -b:v 10M output.flv
+ffmpeg -i input.flv -c:a copy -c:v libx264 -vf subtitles=input.ass -preset 6 -b:v 10M output.flv
 ```
 
 ##### 截取录播与弹幕
