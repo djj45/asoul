@@ -629,6 +629,15 @@ pr插件有官方教程，我就不多说了，pr导出的时候码率一定要�
 
 ffmpeg弹幕压制与[字幕压制](#字幕压制)命令是一样的，第一次压制的时候建议先压制2分钟（至少半分钟）的弹幕，用较短的时间测试一下参数，调节到满意为止
 
+libpass对弹幕优化太渣，cpu占用率很低
+
+参考命令
+
+```
+ffmpeg -i input.flv -c:a copy -vf subtitles=input.ass -b:v 14M output.flv
+ffmpeg -i input.flv -c:a copy -vf subtitles=input.ass -preset 6 -b:v 14M output.flv
+```
+
 ##### 截取录播与弹幕
 
 压制弹幕的时候建议先压制两三分钟的视频看看效果。首先要把录播视频剪几分钟下来，[用ffmpeg可以快速无损剪辑。](./ffmpeg.md#视频粗剪)假设从25分剪到27分，总共两分钟。然后把[xml弹幕转换为ass弹幕](./录播.md#xml弹幕转ass弹幕)，用记事本打开ass弹幕，把除了从25分开始到27分结束的弹幕全部删了，保存，用[Aegisub](./字幕打轴.md)打开
