@@ -584,24 +584,14 @@ ffmpeg -y -i input.flv -an -c:v libx264 -b:v 8M -preset 7 -pass 1 -f null NUL &&
 
 ##### ffmpeg压制
 
-b站录下来的是xml弹幕，需要[转换](./录播.md#xml弹幕转ass弹幕)为ass弹幕才能压制
-
-把ass弹幕文件和视频文件放在同一个目录下，输入命令
+把ass字幕文件和视频文件放在同一个目录下，输入命令
 
 ```
 ffmpeg -i input.flv -c:a copy -c:v libx264 -b:v 14M -vf subtitles=input.ass -preset 7 output.flv
 ffmpeg -i input.flv -c:a copy -c:v libx264 -crf 17 -vf subtitles=input.ass -preset 7 output.flv
 ```
 
-因为asoul的录播是10M码率，码率变化不大，用bitrate模式和crf模式都可以，半屏弹幕14M码率看起来比较清晰，码率上与crf20差不多，如果直接用crf17压制半屏弹幕，压制出来的视频体积几乎是原视频的两倍。下图分别是用crf20,14M，crf17，19M压制出来的视频码率图，四个视频看起来没有什么区别。crf模式前面码率飙升是因为视频开头弹幕从右向左移动，弹幕密度很快达到最大，此后视频码率和弹幕码率可以看作不变，总体码率几乎不变。从下图的顶部的文件名可以看到压制时间随码率的变大而变大，变大的幅度较小，压制时间主要取决于preset
-
-<img src="picture/Snipaste_2021-09-04_15-45-49.png" alt="Snipaste_2021-09-04_15-45-49" width="500"  />
-
-<img src="picture/Snipaste_2021-09-04_13-27-48.png" alt="Snipaste_2021-09-04_13-27-48" width="500"  />
-
-<img src="picture/Snipaste_2021-09-04_13-13-48.png" alt="Snipaste_2021-09-04_13-13-48" width="500"  />
-
-<img src="picture/Snipaste_2021-09-04_14-00-43.png" alt="Snipaste_2021-09-04_14-00-43" width="500"  />
+如果想稍微提高质量，preset可以设置为8，不过压制时间长很多
 
 压制的时候看一下这里，字体是否对得上（不一定三个字体完全一样，如Source Han Sans CN与Source Han Sans CN Regular是同一种字体）
 
@@ -627,7 +617,13 @@ pr插件有官方教程，我就不多说了，pr导出的时候码率一定要�
 
 #### 弹幕压制
 
+[先把xml弹幕转换为ass弹幕](./录播.md#xml弹幕转ass弹幕)
+
 ffmpeg弹幕压制与[字幕压制](#字幕压制)命令是一样的，第一次压制的时候建议先压制2分钟（至少半分钟）的弹幕，用较短的时间测试一下参数，调节到满意为止
+
+弹幕参数参考
+
+<img src="picture/弹幕参数.png" alt="弹幕参数" width="500" />
 
 libpass对弹幕优化太渣，cpu占用率很低，弹幕的显示范围、不透明度、阴影之类的参数在弹幕转换软件里面调一下
 
