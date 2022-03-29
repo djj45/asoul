@@ -387,6 +387,16 @@ ffmpeg -f concat -safe 0 -i input.txt -c copy output.flv
 
 如果出现几条黄色的警告写着时间戳错误，ffmpeg会自动修正，不必理会，如果想没有黄字警告，可以先把视频全部转封装为mp4
 
+在实际测试中发现，录播姬和blrec的分段录播直接合并音画不同步，必须分开视频和音频合并，可以用这个程序快速合并
+
+https://gitee.com/djj45/luboconcat
+
+无需python版（用之前请务必认真观看上面链接的说明）
+
+https://djj45.lanzouu.com/b02oyziti
+
+密码:7dkd
+
 #### MP4封装与提取SRT字幕
 
 SRT字幕必须是UTF-8编码，如果不是，要加入选项`-sub_charenc xxx`指定SRT的编码格式，推荐用记事本打开非UTF-8编码的SRT字幕文件，另存为UTF-8编码
@@ -704,4 +714,9 @@ mp4与mkv的区别就是mkv可以封装无损音频格式flac， 不过绝大部
 
 #### 硬件加速
 
-经过测试，方案废弃，asoul直播的弹幕太多，libpass库对太多的弹幕优化不行，导致cpu跑不满，瓶颈在cpu，硬件加速没有意义。字幕切片也用全cpu压吧，虽然慢了一点，但是质量高。
+```
+ffmpeg -i input.mp4 -vf subtitles=input.ass -c:v h264_nvenc -preset 15 -c:a copy -b:v 14M output.mp4
+ffmpeg -i input.mp4 -vf subtitles=input.ass -c:v hevc_nvenc -preset 15 -c:a copy -b:v 14M output.mp4
+```
+
+asoul直播弹幕过多，建议用30系显卡压弹幕，所有30系显卡压弹幕速度一样。如果第二条命令速度可以接受，用第二条命令质量更好

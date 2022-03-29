@@ -8,6 +8,12 @@ A-SOUL录播，打轴，压制，投稿方法，请务必认真看完[介绍](#�
 
 前后写了很长时间，到百度、谷歌、CSDN、维基百科、百度贴吧、b站、软件官网等网站找了很多资料，终于完结了，后续应该没有什么可以更新的了
 
+#### 强烈推荐使用的软件
+
+无损剪辑losslesscut，关键帧粗剪，不到3秒导出
+
+https://github.djj45.workers.dev/mifi/lossless-cut/releases
+
 #### TODO
 
 FFmpegGUI，难者不会:hand:，期待大佬开发
