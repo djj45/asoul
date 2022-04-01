@@ -44,6 +44,8 @@ https://github.djj45.workers.dev/zhen-ke/ffmpegGUI
 
 #### 介绍
 
+[用到的软件和网站](./软件和网站合集.md)
+
 **视频教程（视频缓慢更新中，补充了一些文章里面没有提到的技巧，建议观看）**
 
 https://www.bilibili.com/video/BV1mY4y1i7Ac
