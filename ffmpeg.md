@@ -273,6 +273,10 @@ ffmpeg -i input.flv -an -c:v copy output.flv
 
 #### 视频剪辑
 
+如果想在任意地方剪断视频，建议使用smmv
+
+https://www.xx7z.com/archives/2088
+
 ffmpeg可以粗剪视频（在关键帧处剪断，可能有几秒误差），速度很快，无损剪辑
 
 注意，flv格式的视频要先无损转换为mp4格式再剪辑，否则视频画面有时会卡住几秒
@@ -596,6 +600,7 @@ ffmpeg -y -i input.flv -an -c:v libx264 -b:v 8M -preset 7 -pass 1 -f null NUL &&
 ```
 ffmpeg -i input.flv -c:a copy -c:v libx264 -b:v 14M -vf subtitles=input.ass -preset 7 output.flv
 ffmpeg -i input.flv -c:a copy -c:v libx264 -crf 17 -vf subtitles=input.ass -preset 7 output.flv
+ffmpeg -i input.mp4 -ss x -to y -c:a copy -c:v libx264 -b:v 10M -vf subtitles=input.ass -preset 7 output.mp4  #压字幕与剪辑结合，精确剪辑，无需改动字幕文件，建议参考视频剪辑命令
 ```
 
 如果想稍微提高质量，preset可以设置为8，不过压制时间长很多
