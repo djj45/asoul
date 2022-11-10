@@ -16,7 +16,7 @@ https://www.bilibili.com/video/BV11N411Q73v/
 
 https://github.com/MC-dusk/QRCD_M
 
-#### 20201020更新
+#### 20221020更新
 
 https://www.bilibili.com/video/BV1Ge411V7XV
 
