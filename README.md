@@ -8,6 +8,14 @@ A-SOUL录播，打轴，压制，投稿方法，请务必认真看完[介绍](#�
 
 前后写了很长时间，到百度、谷歌、CSDN、维基百科、百度贴吧、b站、软件官网等网站找了很多资料，终于完结了，后续应该没有什么可以更新的了
 
+#### 20221110更新
+
+发现了两个很有意思的软件
+
+https://www.bilibili.com/video/BV11N411Q73v/
+
+https://github.com/MC-dusk/QRCD_M
+
 #### 20201020更新
 
 https://www.bilibili.com/video/BV1Ge411V7XV
