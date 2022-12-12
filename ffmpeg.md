@@ -50,7 +50,7 @@
 
 #### ffmpeg下载
 
-[ffmpeg5.0代理下载直链（推荐）](https://githubdl.djj45.workers.dev/https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-gpl-5.0.zip)
+[ffmpeg5.0代理下载直链（推荐）](https://ghproxy.com/https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2022-12-05-12-37/ffmpeg-n5.1.2-8-g5746987bad-win64-gpl-5.1.zip)
 
 [ffmpeg官网下载](https://ffmpeg.org/download.html)
 
@@ -311,7 +311,7 @@ ffprobe -hide_banner -select_streams v -show_entries frame=pict_type input.mp4 >
 ffmpeg -ss 0.048 -to 12.548 -i input.mp4 -c copy -avoid_negative_ts 1 output.mp4
 ```
 
-但是这样做毕竟太麻烦了，而且剪辑时候的画面要用播放器打开，看一下大概时间点在哪里，然后记录下时间。[有一款基于ffmpeg的可视化剪辑软件](https://github.djj45.workers.dev/mifi/lossless-cut/releases)，这个软件一个很棒的特点是不像pr之类的软件把10G左右的录播导入进去很慢而且占用大量内存导致电脑卡顿，非常适合内存小的电脑。虽然这个软件也可以从除了关键帧之外的任意帧开始切割，但是建议不要用，因为导出的视频可能会有一段空白（该软件的说明，我实际测试也是这样，但是用ffmpeg命令行是没有问题的，原因未知）。无损切割是ffmpeg做得到pr做不到的事情，非无损切割请尽量用pr
+但是这样做毕竟太麻烦了，而且剪辑时候的画面要用播放器打开，看一下大概时间点在哪里，然后记录下时间。[有一款基于ffmpeg的可视化剪辑软件](https://github.com/mifi/lossless-cut/releases)，这个软件一个很棒的特点是不像pr之类的软件把10G左右的录播导入进去很慢而且占用大量内存导致电脑卡顿，非常适合内存小的电脑。虽然这个软件也可以从除了关键帧之外的任意帧开始切割，但是建议不要用，因为导出的视频可能会有一段空白（该软件的说明，我实际测试也是这样，但是用ffmpeg命令行是没有问题的，原因未知）。无损切割是ffmpeg做得到pr做不到的事情，非无损切割请尽量用pr
 
 如果非要不在关键帧的地方剪辑，不惜损失质量，也不是不可以
 
@@ -331,7 +331,7 @@ ffmpeg -ss 1.5 -t 10 -i input.mp4 -c:v libx264 -c:a copy -crf 17 -preset 7 outpu
 
 如果想更精确剪辑，用LosslessCut
 
-https://github.djj45.workers.dev/mifi/lossless-cut/releases
+https://github.com/mifi/lossless-cut/releases
 
 用LosslessCut单独剪音频要在轨道里面把视频轨道禁用，输出格式选m4a或者aac
 

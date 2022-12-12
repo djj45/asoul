@@ -14,11 +14,11 @@
 
 ### 录播
 
-[blrec](https://github.djj45.workers.dev/acgnhiki/blrec)是用python写的，可以直接用pip安装，考虑到可能会有依赖等问题，故采用docker安装。m1不能用blrec的docker版，用pip不知道能不能装上。如果不可以，多尝试几个项目
+[blrec](https://github.com/acgnhiki/blrec)是用python写的，可以直接用pip安装，考虑到可能会有依赖等问题，故采用docker安装。m1不能用blrec的docker版，用pip不知道能不能装上。如果不可以，多尝试几个项目
 
-https://github.djj45.workers.dev/valkjsaaa/auto-bilibili-recorder
+https://github.com/valkjsaaa/auto-bilibili-recorder
 
-https://github.djj45.workers.dev/AsaChiri/DDRecorder
+https://github.com/AsaChiri/DDRecorder
 
 - 安装docker
 
@@ -28,7 +28,7 @@ https://github.djj45.workers.dev/AsaChiri/DDRecorder
 
 - 启动
 
-  参照https://github.djj45.workers.dev/acgnhiki/blrec#docker
+  参照https://github.com/acgnhiki/blrec#docker
 
   中的默认参数，在命令行输入命令，第一次启动请耐心等待下载镜像，下载完成后在浏览器输入`localhost:2233`即可访问录播页面
   
@@ -39,7 +39,7 @@ https://github.djj45.workers.dev/AsaChiri/DDRecorder
 
 ### 录播分段下载
 
-源码：https://github.djj45.workers.dev/A-Soul-Database/RangeDownloader/
+源码：https://github.com/A-Soul-Database/RangeDownloader/
 
 - 安装python
 
@@ -49,7 +49,7 @@ https://github.djj45.workers.dev/AsaChiri/DDRecorder
 
 - 下载github源码
 
-  https://github.djj45.workers.dev/A-Soul-Database/RangeDownloader/archive/refs/heads/main.zip
+  https://github.com/A-Soul-Database/RangeDownloader/archive/refs/heads/main.zip
 
 - 解压并进入解压后的文件夹，[在这个目录下打开命令行窗口](https://zhuanlan.zhihu.com/p/162748665)
 
@@ -72,7 +72,7 @@ https://github.djj45.workers.dev/AsaChiri/DDRecorder
 
 ### Aegisub
 
-源码：https://github.djj45.workers.dev/Aegisub/Aegisub
+源码：https://github.com/Aegisub/Aegisub
 
 M1版：https://gist.github.com/frozenpandaman/92a84cd2ba690bb2399afd04e695bf8c
 
@@ -80,7 +80,7 @@ M1版下载直链：https://elifessler.com/aegi/6a556aa-Aegisub.app.zip
 
 第三方新版：
 
-**建议使用这个**：https://github.djj45.workers.dev/wangqr/Aegisub/releases
+**建议使用这个**：https://github.com/wangqr/Aegisub/releases
 
 http://plorkyeran.com/aegisub/
 
@@ -124,6 +124,6 @@ export PATH=$PATH:$ffprobe
 
 ### xml弹幕转ass弹幕
 
-https://github.djj45.workers.dev/hihkm/DanmakuFactory#linux
+https://github.com/hihkm/DanmakuFactory#linux
 
 这个只能自己编译了
